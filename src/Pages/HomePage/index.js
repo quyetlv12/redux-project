@@ -1,36 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { activeId, addNewHobby } from "../../actions/hobby";
-
+import Form from '../../components/Form'
+import {
+  detailProductItem,
+  fetchProductAPI,
+  fetchUserAPI,
+  Login,
+  RemoveProduct,
+} from "../../actions/FETCH_API";
 import Card from "../../components/card";
-const randomNumber = () => {
-  return 1000 + Math.trunc(Math.random() * 9000);
-};
+import Detail from "../../components/detailProduct";
+import { isAuthenticate } from "../../Auth/AuthAPI";
 
 const HomePage = (props) => {
-  const hobbyList = useSelector((state) => state.hobby.list);
-  const activeID = useSelector(state => state.hobby.activeId)
+  const products = useSelector((state) => state.product.listProduct);
+  const detailProduct = useSelector((state) => state.product.detail);
+  console.log("đây là sản phẩm", detailProduct);
   const dispatch = useDispatch();
-  console.log("Hobby list: ", hobbyList);
-  const handleAddHobbyClick = () => {
-    const newId = randomNumber();
-    const newHobby = {
-      id: newId,
-      title: `Hobby ${newId}`,
-    };
-    // Dispatch action to add a new hobby to redux store
-    const action = addNewHobby(newHobby);
-    dispatch(action);
+  useEffect(() => {
+    dispatch(fetchProductAPI());
+    dispatch(fetchUserAPI());
+  }, []);
+  const idProduct = (id) => {
+    dispatch(detailProductItem(id));
   };
-  const handleClickHobbdy = (hobbdy) =>{
-    const action = activeId(hobbdy);
-    dispatch(action);
+  const removeProduct = (id) =>{
+    dispatch(RemoveProduct(id))
   }
-
+  const login = (email , password) =>{
+    dispatch(Login(email,password))
+  }
   return (
     <div>
-      <button onClick={handleAddHobbyClick}>Random</button>
-      <Card list={hobbyList} activeID={activeID} onHobbdyClick={handleClickHobbdy}></Card>
+      <form action="">
+        <input
+          className=" bg-red-500  text-white  border-gray-900  mt-1"
+          type="text"
+        />
+        <button className="" type="submit">
+          Thêm sản phẩm
+        </button>
+      </form>
+      <div className="grid  grid-cols-2">
+        <Card list={products} detail={detailProduct} delete={removeProduct} getId={idProduct}></Card>
+        <Detail detail={detailProduct}></Detail>
+        <Form loginActs={login}/>
+      </div>
     </div>
   );
 };

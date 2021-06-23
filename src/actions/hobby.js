@@ -11,3 +11,9 @@ export const activeId = (hoddby) =>{
         payload : hoddby
     }
 }
+export const addProduct = (hoddby) =>{
+    return {
+        type : 'ADD_PRODUCT',
+        payload : hoddby
+    }
+}

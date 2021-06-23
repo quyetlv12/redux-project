@@ -1,5 +1,6 @@
 const initialState = {
   list: [],
+  lisProducts : [],
   activeId: null,
 };
 const hobbyReducers = (state = initialState, action) => {
@@ -12,7 +13,14 @@ const hobbyReducers = (state = initialState, action) => {
         list: newList,
       };
     }
-
+    case "ADD_PRODUCT": {
+      const newList = [...state.lisProducts];
+      newList.push(action.payload);
+      return {
+        ...state,
+        list: newList,
+      };
+    }
     case "ACTIVE_ID": {
       const newActiveId = action.payload.id;
       return {

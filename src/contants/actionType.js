@@ -1,0 +1,8 @@
+export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const LOAD_PRODUCT = 'LOAD_PRODUCT'
+export const LOAD_USER = 'LOAD_USER'
+export const ACTIVE_ID = 'ACTIVE_ID'
+export const SHOW_PRODUCT = 'SHOW_PRODUCT'
+export const DETAIL_PRODUCT = 'DETAIL_PRODUCT'
+export const LOGIN  = 'LOGIN'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
