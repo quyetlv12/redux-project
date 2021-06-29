@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Input = () => {
+const About = () => {
     return (
         <div>
-            <input type="text"/>
+            trang giới thiệu 
         </div>
     )
 }
 
-export default Input
+export default About

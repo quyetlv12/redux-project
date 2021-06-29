@@ -8,9 +8,11 @@ const initialState = {
 const ProductReducers = (state = initialState, { type, payload }) => {
   switch (type) {
     case acType.ADD_PRODUCT: {
+      const newList = [...state.listProduct]
+      newList.push(payload)
       return {
         ...state,
-        list: payload,
+        listProduct: newList,
       };
     }
     case acType.ACTIVE_ID: {

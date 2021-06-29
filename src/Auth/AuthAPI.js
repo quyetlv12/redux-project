@@ -1,8 +1,15 @@
 const user = JSON.parse(localStorage.getItem("user"))
 
 export const isAuthenticate = () =>{
-    return user.token
+    if (user) {
+        return user.token
+    } else {
+        return
+    }
 }
-export const isAdmin = () =>{
+export const isUserId = () =>{
     return user.id
+}
+export const isRole = () =>{
+    return user.role
 }

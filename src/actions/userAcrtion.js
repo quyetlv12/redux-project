@@ -7,3 +7,9 @@ export const loadUser = (user) =>{
         user
     }
 }
+export const statusLogin = (user) =>{
+    return {
+        type  :acType.STATUS_LOGIN,
+        user
+    }
+}
